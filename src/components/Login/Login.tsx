@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
+
 import Image from 'next/image'
 import logo from '../../../public/logo.svg'
 import axios from 'axios'
@@ -24,6 +26,10 @@ export default function Login() {
     email: false,
     password: false,
   })
+  // const [serverError, setServerError] = useState(false)
+  const [serverErrorMessage, setServerErrorMessage] = useState<string>('')
+
+  const router = useRouter()
 
   function validateEmail(email: string) {
     const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
@@ -31,6 +37,7 @@ export default function Login() {
   }
 
   const handleChange = (data: React.ChangeEvent<HTMLInputElement>) => {
+    setServerErrorMessage('')
     if (data.target.name === 'email') {
       setError({ ...error, email: false })
       setInputData({ ...inputData, email: data.target.value })
@@ -53,18 +60,21 @@ export default function Login() {
     }
     setError(newError)
 
-    // if (newError.email || newError.password) {
-    //   return
-    // }
+    if (newError.email || newError.password) {
+      return
+    }
 
     try {
       const response = await axios.post(
-        'https://api.hr.constel.co/api/v1/',
+        'https://api.hr.constel.co/api/v1/login',
         inputData
       )
       console.log('API response:', response.data)
-    } catch (error) {
+      window.localStorage.setItem('token', response.data.token)
+      response.data.status === 'ok' ? router.push('/home') : null
+    } catch (error: any) {
       console.error('API error:', error)
+      setServerErrorMessage(error.response.data.error.message)
     }
   }
 
@@ -77,7 +87,7 @@ export default function Login() {
           <input
             type="email"
             name="email"
-            className={styles.input}
+            className={error.email ? styles.redBorder : styles.input}
             placeholder="Enter email here"
             onChange={handleChange}
           />
@@ -92,7 +102,7 @@ export default function Login() {
           <input
             type="password"
             name="password"
-            className={styles.input}
+            className={error.password ? styles.redBorder : styles.input}
             placeholder="Enter password here"
             onChange={handleChange}
           />
@@ -102,6 +112,9 @@ export default function Login() {
             </p>
           ) : null}
         </div>
+        {serverErrorMessage !== '' ? (
+          <div className={styles.serverError}>{serverErrorMessage}</div>
+        ) : null}
         <div className={styles.buttonHolder}>
           <button
             className={styles.confirmButton}
@@ -109,9 +122,6 @@ export default function Login() {
             onClick={handleSubmit}
           >
             Confirm
-          </button>
-          <button type="button" onClick={() => console.log(error)}>
-            error
           </button>
         </div>
       </form>

@@ -1,10 +1,10 @@
-import Login from '../components/Login/Login'
+import React, { useState, useEffect } from 'react'
+import Home from '../components/Home/Home'
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <>
-      <div>ajde da vidimo da li radi</div>
-      <Login />
-    </>
+    <div>
+      <Home />/
+    </div>
   )
 }
