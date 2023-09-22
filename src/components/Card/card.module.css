@@ -4,11 +4,17 @@
   background-color: #f9f9f9;
   color: black;
   margin-bottom: 20px;
-  border-radius: 5px;
-  padding: 20px;
+  border-radius: 10px;
+  padding: 32px;
 }
 
 .userDataHolder {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.hcDataHolder {
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -18,17 +24,64 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 100px;
+  width: 89px;
+  height: 34px;
   background-color: #d9d9d9;
   margin-right: 20px;
   border-radius: 5px;
+  color: #a6a6a6;
+  padding-left: 20px;
 }
 .hearts {
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 100px;
+  width: 89px;
+  height: 34px;
   background-color: #d9d9d9;
   margin-right: 20px;
   border-radius: 5px;
+  color: #a6a6a6;
+  padding-left: 20px;
+}
+
+.image {
+  border: 0px solid unset;
+  border-radius: 10px;
+}
+.text {
+  width: 100%;
+  font-size: 15px;
+  line-height: 22px;
+  margin-top: 10px;
+  text-align: left;
+}
+
+.hearts > p {
+  margin-left: 10px;
+}
+.comments > p {
+  margin-left: 10px;
+}
+
+.userImg {
+  border: 0px solid unset;
+  border-radius: 91px;
+  margin-right: 10px;
+}
+
+.userName {
+  display: flex;
+  flex-direction: row;
+}
+.userData {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.grayText {
+  color: #a6a6a6;
+  font-size: 14px;
+  margin-left: 5px;
 }

@@ -1,14 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-}
-
-module.exports = {
   images: {
+    domains: ['constel-hr-frontend.s3.eu-central-1.amazonaws.com'],
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'api.hr.constel.co',
+        hostname: 'https://constel-hr-frontend.s3.eu-central-1.amazonaws.com/',
         port: '',
         pathname: '/api/v1/posts/**',
       },
