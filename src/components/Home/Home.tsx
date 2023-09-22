@@ -37,6 +37,7 @@ export default function Home() {
         overflow: 'auto',
         backgroundColor: '#fff',
         justifyContent: 'center',
+        margin: '10% 25%',
       }}
     >
       {posts.map((post: any, inx: number) => {

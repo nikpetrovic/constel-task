@@ -29,7 +29,7 @@ export default function Card({ post }: any) {
       </div>
       <br />
       {/* <Image src={post.image} alt="post-image" /> */}
-      <p>{post.text}</p>
+      <p style={{ padding: '5px', width: '95%' }}>{post.text}</p>
       <br />
       <div className={styles.userDataHolder}>
         <div className={styles.hearts}>
